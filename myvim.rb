@@ -1,9 +1,9 @@
 class Myvim < Formula
   desc "Vi 'workalike' with many additional features"
   homepage "https://vim.sourceforge.io/"
-  # curl -s https://api.github.com/repos/vim/vim/releases/tags | jq .[0]
-  url "https://github.com/vim/vim/archive/v8.0.1097.tar.gz"
-  sha256 "4c7fce331a2d5ed8d4031aa9089b754549195133b2b2e7facc85b01318b88092"
+  # curl -s https://api.github.com/repos/vim/vim/tags | jq .[0]
+  url "https://github.com/vim/vim/archive/v8.0.1240.tar.gz"
+  sha256 "4632e25597b4cb4ba729fde9adbaebf93673afa41dd99e0ed6b339702a656ea7"
   head "https://github.com/vim/vim.git"
 
   option "with-gui", "Build with GUI vim(GVim)."
