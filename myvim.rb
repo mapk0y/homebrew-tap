@@ -21,10 +21,10 @@ class Myvim < Formula
     option "without-#{language}", "Build vim without #{language} support"
   end
 
-  depends_on :python => :recommended
-  depends_on :python3 => :recommended
-  depends_on :ruby => "1.8" # Can be compiled against 1.8.x or >= 1.9.3-p385.
-  depends_on :perl => "5.3"
+  depends_on "python" => :recommended
+  depends_on "python3" => :recommended
+  depends_on "ruby" => "1.8" # Can be compiled against 1.8.x or >= 1.9.3-p385.
+  depends_on "perl" => "5.3"
   depends_on "luajit" => :recommended
   if OS.mac?
     depends_on :x11 if build.with? "client-server"
