@@ -1,0 +1,85 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby
+
+    steps:
+      - checkout
+        # https://circleci.com/docs/2.0/env-vars/#interpolating-environment-variables-to-set-other-environment-variable's
+      - run:
+          name: Setup Linuxbrew
+          command: |
+            sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+            sudo locale-gen
+            sudo apt-get install build-essential curl file git python-setuptools
+            TRAVIS=yes USER=circleci sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+            echo 'export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"' >>$BASH_ENV
+      - run:
+          name: Setup container-structure-test
+          command: |
+            brew install ./container-structure-test.rb
+            brew test ./container-structure-test.rb
+      - run:
+          name: Setup container-builder-local
+          command: |
+            brew install ./container-builder-local.rb
+            brew test ./container-builder-local.rb
+#  create-pull-request:
+#    working_directory: /app
+#    docker:
+#      - image: golang
+#    steps:
+#      - checkout
+#      - run:
+#          name: setup command
+#          command: |
+#            curl -sL https://github.com/github/hub/releases/download/v2.2.9/hub-linux-amd64-2.2.9.tgz | tar xz -C /usr/local/bin --strip-components=2 -f - hub-linux-amd64-2.2.9/bin/hub
+#            apt-get update && apt-get -y install jq
+#      - run:
+#          name: compare container-structure-test tags
+#          command: |
+#            TARGET=container-structure-test
+#            for tag in $(curl -sL https://api.github.com/repos/GoogleCloudPlatform/container-structure-test/tags | jq -r ".[].name"); do
+#              case ${tag} in
+#                *)
+#                  if [[ $(git tag -l ${TARGET}-${tag}) ]]; then
+#                    :
+#                  else
+#                    export VERSION=${tag#v}
+#                    export GIT_COMMITTER_NAME=mapk0y
+#                    export GIT_COMMITTER_EMAIL="${GIT_COMMITTER_NAME}@gmail.com
+#                    export GIT_AUTHOR_NAME=${GIT_COMMITTER_NAME}
+#                    export GIT_AUTHOR_EMAIL="${GIT_COMMITTER_NAME}@gmail.com"
+#
+#                    sed -i -e "s/^  CONTAINER_STRUCTURE_TEST_VERSION = .*/  CONTAINER_STRUCTURE_TEST_VERSION = \"${VERSION}\"/" ${TARGET}.rb
+#                    git checkout -b update_${TARGET}_${VERSION}
+#                    git add ${TARGET}.rb
+#                    git commit -m "Update ${TARGET} version to ${VERSION}"
+#                    git push origin update_${TARGET}_${VERSION}
+#                    git tag ${TARGET}-${tag}
+#                    git push origin ${TARGET}-${tag}
+#                    export GITHUB_USER=mapk0y-bot
+#                    hub pull-request -m "$(git log -1 --pretty=%B)"
+#                    git checkout master
+#                  fi
+#                  ;;
+#              esac
+#            done
+
+workflows:
+  version: 2
+  commit-workflow:
+    jobs:
+      - build
+# scheduled-workflow:
+#   triggers:
+#     - schedule:
+#         cron: "11 * * * *"
+#         filters:
+#           branches:
+#             only: master
+#   jobs:
+#     - create-pull-request
+

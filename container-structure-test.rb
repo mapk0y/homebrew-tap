@@ -25,6 +25,6 @@ class ContainerStructureTest < Formula
   end
 
   test do
-    system "#{bin}/container-structure-test"
+    assert_equal "Please supply path to image or tarball to test against\n", shell_output("#{bin}/container-structure-test", result = 1)
   end
 end
