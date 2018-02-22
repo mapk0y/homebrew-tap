@@ -12,7 +12,7 @@ jobs:
           name: Setup Linuxbrew
           command: |
             sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
-            sudo locale.gen
+            sudo locale-gen
             sudo apt-get install build-essential curl file git python-setuptools
             TRAVIS=yes USER=circleci sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
             echo 'export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"' >>$BASH_ENV
