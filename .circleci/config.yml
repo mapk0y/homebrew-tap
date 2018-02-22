@@ -18,10 +18,12 @@ jobs:
           name: Setup container-structure-test
           command: |
             brew install ./container-structure-test.rb
+            brew test ./container-structure-test.rb
       - run:
           name: Setup container-builder-local
           command: |
             brew install ./container-builder-local.rb
+            brew test ./container-builder-local.rb
 #  create-pull-request:
 #    working_directory: /app
 #    docker:
