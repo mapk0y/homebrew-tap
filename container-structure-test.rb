@@ -25,6 +25,8 @@ class ContainerStructureTest < Formula
   end
 
   test do
-    assert_equal "Please supply path to image or tarball to test against\n", shell_output("#{bin}/container-structure-test", result = 1)
+    assert_equal "v#{CONTAINER_STRUCTURE_TEST_VERSION}\n", shell_output("#{bin}/container-structure-test version", result = 0)
+    assert_match "container-structure-test provides a powerful framework to validate\nthe structure of a container image.\n",
+                  shell_output("#{bin}/container-structure-test help", result = 0)
   end
 end
