@@ -20,7 +20,7 @@ class ContainerStructureTest < Formula
 
     cd path do
       system "make"
-      bin.install "out/structure-test" => "container-structure-test"
+      bin.install "out/container-structure-test" => "container-structure-test"
     end
   end
 
