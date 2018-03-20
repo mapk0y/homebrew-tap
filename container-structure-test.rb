@@ -1,6 +1,6 @@
 class ContainerStructureTest < Formula
 
-  CONTAINER_STRUCTURE_TEST_VERSION = "0.3.0"
+  CONTAINER_STRUCTURE_TEST_VERSION = "1.0.0"
 
   desc "Container Structure Tests: Unit Tests for Docker Images"
   homepage "https://github.com/GoogleCloudPlatform/container-structure-test"
@@ -20,11 +20,13 @@ class ContainerStructureTest < Formula
 
     cd path do
       system "make"
-      bin.install "out/structure-test" => "container-structure-test"
+      bin.install "out/container-structure-test" => "container-structure-test"
     end
   end
 
   test do
-    assert_equal "Please supply path to image or tarball to test against\n", shell_output("#{bin}/container-structure-test", result = 1)
+    assert_equal "v#{CONTAINER_STRUCTURE_TEST_VERSION}\n", shell_output("#{bin}/container-structure-test version", result = 0)
+    assert_match "container-structure-test provides a powerful framework to validate\nthe structure of a container image.\n",
+                  shell_output("#{bin}/container-structure-test help", result = 0)
   end
 end
