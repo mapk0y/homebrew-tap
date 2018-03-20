@@ -1,6 +1,6 @@
 class ContainerStructureTest < Formula
 
-  CONTAINER_STRUCTURE_TEST_VERSION = "0.3.0"
+  CONTAINER_STRUCTURE_TEST_VERSION = "1.0.0"
 
   desc "Container Structure Tests: Unit Tests for Docker Images"
   homepage "https://github.com/GoogleCloudPlatform/container-structure-test"
