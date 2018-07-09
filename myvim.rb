@@ -2,8 +2,8 @@ class Myvim < Formula
   desc "Vi 'workalike' with many additional features"
   homepage "https://vim.sourceforge.io/"
   # curl -s https://api.github.com/repos/vim/vim/tags | jq .[0]
-  url "https://github.com/vim/vim/archive/v8.1.0037.tar.gz"
-  sha256 "898612e0965f251535da9e96ac4b83f299a0b803fa9f3c4b028246896949892f"
+  url "https://github.com/vim/vim/archive/v8.1.0172.tar.gz"
+  sha256 "ce4b8653a51f74cea09789136c6b4889eebd9326000b432b0d0a4c80f528ec1a"
   head "https://github.com/vim/vim.git"
 
   option "with-gui", "Build with GUI vim(GVim)."
@@ -21,7 +21,7 @@ class Myvim < Formula
     option "without-#{language}", "Build vim without #{language} support"
   end
 
-  depends_on "python" => :recommended
+  depends_on "python@2" => :recommended
   depends_on "python3" => :recommended
   depends_on "ruby" => "1.8" # Can be compiled against 1.8.x or >= 1.9.3-p385.
   depends_on "perl" => "5.3"
@@ -119,14 +119,14 @@ class Myvim < Formula
 
   test do
     if build.with? "python3"
-      (testpath/"commands.vim").write <<-EOS.undent
+      (testpath/"commands.vim").write <<-EOS
         :python3 import vim; vim.current.buffer[0] = 'hello python3'
         :wq
       EOS
       system bin/"vim", "-T", "dumb", "-s", "commands.vim", "test.txt"
       assert_equal "hello python3", File.read("test.txt").chomp
     elsif build.with? "python"
-      (testpath/"commands.vim").write <<-EOS.undent
+      (testpath/"commands.vim").write <<-EOS
         :python import vim; vim.current.buffer[0] = 'hello world'
         :wq
       EOS
