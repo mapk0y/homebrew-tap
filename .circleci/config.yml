@@ -17,15 +17,9 @@ jobs:
             TRAVIS=yes USER=circleci sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
             echo 'export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"' >>$BASH_ENV
       - run:
-          name: Setup container-structure-test
+          name: test fomulas
           command: |
-            brew install ./container-structure-test.rb
-            brew test ./container-structure-test.rb
-      - run:
-          name: Setup container-builder-local
-          command: |
-            brew install ./container-builder-local.rb
-            brew test ./container-builder-local.rb
+            make test
 #  create-pull-request:
 #    working_directory: /app
 #    docker:
