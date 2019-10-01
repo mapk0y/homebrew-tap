@@ -1,9 +1,9 @@
 class CloudBuildLocal < Formula
 
   TARGET_NAME = "cloud-build-local"
-  VERSION = "0.4.3"
-  SHA256_MAC = "a13f728018c8effe3bd37c7550eded4c4f838f01105802e2d1a7516d7f799dea"
-  SHA256_LINUX = "2ebc412741935e75161f96a11642043ed26340049b136bb38dd07bdc59d9ed38"
+  VERSION = "0.5.0"
+  SHA256_MAC = "27019b14c8ae7680c3f667aab7c1a02e0ad17381cf2462ed40f6158ea3ca886d"
+  SHA256_LINUX = "4c84e19f973236fbad580f0ec06d3e1e41a2e881da946bd3d9ca55d478f5c94e"
 
   desc "Local Build runs Google Cloud Build builds locally"
   homepage "https://github.com/GoogleCloudPlatform/cloud-build-local"
