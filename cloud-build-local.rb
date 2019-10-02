@@ -10,8 +10,6 @@ class CloudBuildLocal < Formula
   head "https://github.com/GoogleCloudPlatform/cloud-build-local.git", :branch => 'master'
   version VERSION
 
-  depends_on "go" => :build
-
   if OS.mac?
     BIN_NAME = "#{TARGET_NAME}_darwin_amd64-v#{VERSION}"
     sha256 SHA256_MAC
