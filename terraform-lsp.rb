@@ -8,9 +8,9 @@ class TerraformLsp < Formula
   SHA256_LINUX = "55fec793344f6377f53b6955a394cc87e15c4384d2ac9b4193c792de90c13f7a"
   SHA256_MAC = "eb78efa0ead93a9e0b7e05349334e57b7e70c11a818a2feded65079604de3b71"
 
-  desc "Local Build runs Google Cloud Build builds locally"
-  homepage "https://github.com/GoogleCloudPlatform/cloud-build-local"
-  head "https://github.com/GoogleCloudPlatform/cloud-build-local.git", branch: "master"
+  desc "Language Server Protocol for Terraform"
+  homepage "https://github.com/juliosueiras/terraform-lsp"
+  head "https://github.com/juliosueiras/terraform-lsp.git", branch: "master"
   version VERSION
 
   if OS.mac?
@@ -28,8 +28,7 @@ class TerraformLsp < Formula
   end
 
   test do
-    # FIXME
-    output = shell_output("#{bin}/#{TARGET_NAME} -h 2>&1")
-    assert_match /Usage of terraform-lsp:/, output
+    output = shell_output("#{bin}/#{TARGET_NAME} -h 2>&1", result = 2)
+    assert_match /Usage of .*terraform-lsp:/, output
   end
 end
