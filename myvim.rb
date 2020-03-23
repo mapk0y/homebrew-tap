@@ -3,8 +3,8 @@ class Myvim < Formula
   homepage "https://vim.sourceforge.io/"
   # curl -s https://api.github.com/repos/vim/vim/tags | jq .[0]
   # curl -sL https://github.com/vim/vim/archive/$(curl -s https://api.github.com/repos/vim/vim/tags | jq -r .[0].name).tar.gz | sha256sum
-  url "https://github.com/vim/vim/archive/v8.1.2292.tar.gz"
-  sha256 "b6bc6c81356c1129425a69de9625c00d5e4bebb49d42ec1df0f9cd8a5d4b6521"
+  url "https://github.com/vim/vim/archive/v8.2.0285.tar.gz"
+  sha256 "e1fab3ecdec534e82fb3910c4135ad1079ed26448dbcdbdc4be3e1c5772649fd"
   head "https://github.com/vim/vim.git"
 
   option "with-gui", "Build with GUI vim(GVim)."
